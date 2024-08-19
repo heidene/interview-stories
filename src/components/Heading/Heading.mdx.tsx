@@ -26,11 +26,11 @@ export const Heading = ({ as: Element = "h1", id, children }: headingProps) => {
       <style>{css}</style>
       <Element
         id={id === null ? undefined : id}
-        class={`heading heading--${Element}`}
+        className={`heading heading--${Element}`}
       >
         {children}
       </Element>
-      <hr class="heading-line" />
+      <hr className="heading-line" />
     </>
   );
 };
