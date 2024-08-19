@@ -1,6 +1,6 @@
 type headingProps = {
   as?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
-} & astroHTML.JSX.HTMLAttributes;
+} & React.HTMLAttributes<HTMLElement>;
 
 export const Heading = ({ as: Element = "h1", id, children }: headingProps) => {
   const css = `
@@ -35,32 +35,32 @@ export const Heading = ({ as: Element = "h1", id, children }: headingProps) => {
   );
 };
 
-export const H1 = (props: astroHTML.JSX.HTMLAttributes) => (
+export const H1 = (props: React.HTMLAttributes<HTMLElement>) => (
   <Heading as="h1" id={props.id}>
     {props.children}
   </Heading>
 );
-export const H2 = (props: astroHTML.JSX.HTMLAttributes) => (
+export const H2 = (props: React.HTMLAttributes<HTMLElement>) => (
   <Heading as="h2" id={props.id}>
     {props.children}
   </Heading>
 );
-export const H3 = (props: astroHTML.JSX.HTMLAttributes) => (
+export const H3 = (props: React.HTMLAttributes<HTMLElement>) => (
   <Heading as="h3" id={props.id}>
     {props.children}
   </Heading>
 );
-export const H4 = (props: astroHTML.JSX.HTMLAttributes) => (
+export const H4 = (props: React.HTMLAttributes<HTMLElement>) => (
   <Heading as="h4" id={props.id}>
     {props.children}
   </Heading>
 );
-export const H5 = (props: astroHTML.JSX.HTMLAttributes) => (
+export const H5 = (props: React.HTMLAttributes<HTMLElement>) => (
   <Heading as="h5" id={props.id}>
     {props.children}
   </Heading>
 );
-export const H6 = (props: astroHTML.JSX.HTMLAttributes) => (
+export const H6 = (props: React.HTMLAttributes<HTMLElement>) => (
   <Heading as="h6" id={props.id}>
     {props.children}
   </Heading>
