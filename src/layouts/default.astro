@@ -1,0 +1,132 @@
+---
+import "terminal.css";
+import { ViewTransitions } from "astro:transitions";
+import {
+    SignedIn,
+    SignedOut,
+    UserButton,
+    SignInButton,
+} from "@clerk/astro/react";
+
+const { title, path } = Astro.props;
+---
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <meta name="viewport" content="width=device-width" />
+        <meta name="generator" content={Astro.generator} />
+        <title>{title}</title>
+        <style>
+            :root {
+                --global-font-size: 15px;
+                --global-line-height: 1.4em;
+                --global-space: 10px;
+                --font-stack: Menlo, Monaco, Lucida Console, Liberation Mono,
+                    DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New,
+                    monospace, serif;
+                --mono-font-stack: Menlo, Monaco, Lucida Console,
+                    Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono,
+                    Courier New, monospace, serif;
+                --background-color: #222225;
+                --page-width: 65em;
+                --font-color: #e8e9ed;
+                --invert-font-color: #222225;
+                --secondary-color: #a3abba;
+                --tertiary-color: #a3abba;
+                --primary-color: #62c4ff;
+                --error-color: #ff3c74;
+                --progress-bar-background: #3f3f44;
+                --progress-bar-fill: #62c4ff;
+                --code-bg-color: #3f3f44;
+                --input-style: solid;
+                --display-h1-decoration: none;
+                --global-scroll-margin-top: 61px;
+            }
+
+            html {
+                height: 100%;
+            }
+            body {
+                height: auto;
+            }
+            .page-header {
+                position: sticky;
+                top: 0px;
+                z-index: 1;
+                background-color: var(--background-color);
+            }
+            .page-body {
+                display: flex;
+            }
+            .page-footer {
+                padding-block-end: 2.5rem;
+            }
+            .content-nav {
+                position: sticky;
+                top: 61px;
+                align-self: start;
+                flex-basis: 300px;
+            }
+            .content-wrapper {
+                flex: 1 1 100%;
+            }
+        </style>
+        <ViewTransitions />
+    </head>
+    <body class="terminal">
+        <header class="container page-header">
+            <div class="terminal-nav">
+                <div class="terminal-logo">
+                    <div class="logo terminal-prompt">
+                        <a href="/" class="no-style">Webshop assesment</a>
+                    </div>
+                </div>
+                <nav class="terminal-menu">
+                    <div style="display: flex; gap: 4px;">
+                        <ul>
+                            <li>
+                                <a
+                                    class={`menu-item ${path === "stories" ? "active" : ""}`}
+                                    href="/stories">Stories</a
+                                >
+                            </li>
+                            <!-- <li>
+                                <a
+                                    class={`menu-item ${path === "about" ? "active" : ""}`}
+                                    href="/about">About</a
+                                >
+                            </li> -->
+                        </ul>
+                        <SignedOut client:load>
+                            <SignInButton client:load mode="modal" />
+                        </SignedOut>
+                        <SignedIn client:load>
+                            <UserButton client:load />
+                        </SignedIn>
+                    </div>
+                </nav>
+            </div>
+        </header>
+        <main class="page-body container">
+            {
+                Astro.slots.has("content-nav") && (
+                    <div class="content-nav">
+                        <slot name="content-nav" />
+                    </div>
+                )
+            }
+            <div class="content-wrapper">
+                <slot />
+            </div>
+        </main>
+        <footer class="container page-footer">
+            <hr />
+            <div class="footer">
+                <a href="https://dreamy-trifle-7f42a6.netlify.app/en/">Amexio</a
+                >
+            </div>
+        </footer>
+    </body>
+</html>

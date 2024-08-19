@@ -1,0 +1,52 @@
+---
+import { getEntry } from "astro:content";
+import {
+    H1,
+    H2,
+    H3,
+    H4,
+    H5,
+    H6,
+    Heading,
+} from "../../components/Heading/Heading.mdx";
+import Toc from "../../components/toc.astro";
+import DefaultLayout from "../../layouts/default.astro";
+
+const { slug } = Astro.params;
+if (slug === undefined) {
+    throw new Error("Slug is required");
+}
+
+const entry = await getEntry("stories", slug);
+
+if (entry === undefined) {
+    return Astro.redirect("/404");
+}
+
+const { Content, headings } = await entry.render();
+const componentMap = { h1: H1, h2: H2, h3: H3, h4: H4, h5: H5, h6: H6 };
+console.log(headings);
+---
+
+<DefaultLayout title={entry.data.title} path="">
+    <Toc slot="content-nav">
+        <ul>
+            <li>
+                <a href="#main-title">{entry.data.title}</a>
+            </li>
+            {
+                headings.map((heading) => (
+                    <li>
+                        <a href={`#${heading.slug}`}>{heading.text}</a>
+                    </li>
+                ))
+            }
+        </ul>
+    </Toc>
+    <Heading id="main-title">{entry.data.title}</Heading>
+    ---<br />
+    <span><b>Tags:</b></span><br />
+    <span>[ {entry.data.tags.join(", ")} ]</span><br />
+    ---<br />
+    <Content components={{ ...componentMap }} />
+</DefaultLayout>

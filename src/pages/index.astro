@@ -1,0 +1,142 @@
+---
+import { Heading } from "../components/Heading/Heading.mdx";
+import Toc from "../components/toc.astro";
+import DefaultLayout from "../layouts/default.astro";
+---
+
+<DefaultLayout>
+    <Toc slot="content-nav">
+        <ul>
+            <li><a href="#intro">Intro</a></li>
+            <li><a href="#resources">Resources</a></li>
+            <li>
+                <a href="#tech-requirements">Technology Requirements</a>
+            </li>
+            <li><a href="#tech-choices">Technology Choices</a></li>
+            <li><a href="#folder-structure">Folder Structure</a></li>
+        </ul>
+    </Toc>
+    <Heading>Technical Assessment</Heading>
+    <Heading as="h2" id="intro">Intro</Heading>
+    This website is the companion application for the technical assessment repository,
+    React-Webshop. This site is designed to assist job applicants during technical
+    interviews by providing detailed stories. Our goal is to support you through
+    the interview process, helping you demonstrate your skills and knowledge effectively.
+
+    <Heading as="h2" id="resources">Resources</Heading>
+    To get up and running you can use the following resources:
+    <dl>
+        <dt>Stack blitz</dt>
+        <dd>
+            <a
+                href="https://stackblitz.com/~/github.com/heidene/react-webshop"
+                target="_blank">Cloud dev environment</a
+            >
+        </dd>
+        <dt>Github</dt>
+        <dd>
+            <a
+                href="https://stackblitz.com/~/github.com/heidene/react-webshop"
+                target="_blank">Code repository</a
+            >
+        </dd>
+    </dl>
+
+    <Heading as="h2" id="tech-requirements">Technology requirements</Heading>
+    <p>
+        These are the technological environment requirements if you chose to go
+        with the github setp. Stackblitz handles this automatically via the
+        cloud environment.
+    </p>
+    <ul>
+        <li>Nodejs version 20</li>
+        <li>npm version 10</li>
+    </ul>
+    <Heading as="h2" id="tech-choices">Technologie choices</Heading>
+    <p>
+        The assesment repo is setup intentionally with some opinions already in
+        place. Do not worry if you are not familiar with one or more of these
+        libraries. You are not assest on your knowledge of libraries. These
+        opinions are in place to have a starting place and to simulate a work
+        environment where you have to join in an already existing codebase.
+    </p>
+    <span><b>Documentation:</b></span>
+    <dl>
+        <dt>JS Library</dt>
+        <dd>
+            <a href="https://react.dev/" target="_blank">React v18</a>
+        </dd>
+        <dt>Styling</dt>
+        <dd>
+            <a href="https://tailwindcss.com" target="_blank">Tailwindcss</a>
+        </dd>
+        <dt>Router</dt>
+        <dd>
+            <a href="https://tanstack.com/router/latest" target="_blank"
+                >TanStack Router</a
+            >
+        </dd>
+        <dt>Data querying</dt>
+        <dd>
+            <a href="https://tanstack.com/query/latest" target="_blank"
+                >React Query</a
+            >
+        </dd>
+        <dt>Data validation</dt>
+        <dd>
+            <a href="https://zod.dev/" target="_blank">Zod</a>
+        </dd>
+        <dt>Backend</dt>
+        <dd>
+            <a href="https://trpc.io/" target="_blank">trpc</a>
+        </dd>
+        <dt>Language</dt>
+        <dd>
+            <a href="https://www.typescriptlang.org/" target="_blank"
+                >Typescript</a
+            >
+        </dd>
+        <dt>Build tool</dt>
+        <dd>
+            <a href="https://vitejs.dev/" target="_blank">Vite</a>
+        </dd>
+    </dl>
+    <Heading as="h2" id="folder-structure">Folder Structure</Heading>
+    <dl>
+        <dt>public</dt>
+        <dd>Static assets</dd>
+        <dt>src/client</dt>
+        <dd>All client related source code</dd>
+        <dt>src/client/assets</dt>
+        <dd>Assets to be bundled in via js imports</dd>
+        <dt>src/client/components</dt>
+        <dd>All reuseable components should live here</dd>
+        <dt>src/client/routes</dt>
+        <dd>
+            <ul>
+                <li>
+                    __root.tsx : The general layout of all pages within the
+                    routes
+                </li>
+                <li>
+                    [page-name].lazy.tsx : Any /[page-name] route that is outlet
+                    inside __root
+                </li>
+            </ul>
+        </dd>
+        <dt>src/server</dt>
+        <dd>
+            All backend related source code
+            <ul>
+                <li>db.ts : contains the code of a mock db</li>
+                <li>
+                    index.ts : contains the routes/procedures for the trpc
+                    service
+                </li>
+                <li>trpc.ts : bootstrap code for the trpc service</li>
+            </ul>
+        </dd>
+        <dt>src/util</dt>
+        <dd>Simple util stuff shared between client and backend</dd>
+    </dl>
+</DefaultLayout>

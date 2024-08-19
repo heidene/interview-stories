@@ -1,0 +1,40 @@
+---
+import { getCollection } from "astro:content";
+
+import { Heading } from "../components/Heading/Heading.mdx";
+import DefaultLayout from "../layouts/default.astro";
+
+const allStories = await getCollection("stories");
+---
+
+<DefaultLayout title="Stories" path="stories">
+    <Heading>Stories</Heading>
+    <table>
+        <caption>Backlog</caption>
+        <tfoot>
+            <tr>
+                <th colspan="5">Good luck!</th>
+            </tr>
+        </tfoot>
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Tags</th>
+            </tr>
+        </thead>
+        <tbody>
+            {
+                allStories.map((story) => (
+                    <tr>
+                        <td>
+                            <a href={`stories/${story.slug}`}>
+                                {story.data.title}
+                            </a>
+                        </td>
+                        <td>{story.data.tags.join(", ")}</td>
+                    </tr>
+                ))
+            }
+        </tbody>
+    </table>
+</DefaultLayout>
